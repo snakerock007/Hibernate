@@ -1,24 +1,39 @@
 package jm.task.core.jdbc.util;
 
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Util {
-    private static final String DRIVER = "";
-    private static final String HOST = "";
-    private static final String LOGIN = "root";
-    private static final String PASSWORD = "1234";
 
-    public static Connection getConnection() {
-        Connection connection = null;
+public class Util {
+
+
+        private static final String userName = "root";
+        private static final String password = "re20pi01n64Wt";
+        private static final String connectionUrl = "jdbc:mysql://localhost:3306/123";
+
+
+        public static Connection getConnection() {
+            Connection connection = null;
         try {
-            Class.forName(DRIVER);
-            connection = DriverManager.getConnection(HOST, LOGIN, PASSWORD);
-        } catch (SQLException | ClassNotFoundException e) {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+
+            e.printStackTrace();
+        }
+        try {
+           connection = DriverManager.getConnection(
+                   connectionUrl,
+                   userName,
+                   password);
+
+        } catch (SQLException e) {
+
             e.printStackTrace();
         }
         return connection;
+
     }
 }
