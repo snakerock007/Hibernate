@@ -26,18 +26,19 @@ public class Util {
                     .setProperty("hibernate.connection.username", userName)
                     .setProperty("hibernate.connection.password", password)
                     .setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect")
-                    .addAnnotatedClass(User.class)
-                    .setProperty("hibernate.c3p0.min_size","5")
-                    .setProperty("hibernate.c3p0.max_size","200")
-                    .setProperty("hibernate.c3p0.max_statements","200");
-
+                    .addAnnotatedClass(User.class);
 
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-        } catch (HibernateException e) {
+        } catch (Throwable e) {
             e.printStackTrace();
         }
         return sessionFactory;
+    }
+
+    public static void closeConnection() {
+        if (sessionFactory != null)
+            sessionFactory.close();
     }
 }

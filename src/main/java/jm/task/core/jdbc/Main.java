@@ -2,15 +2,17 @@ package jm.task.core.jdbc;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
+import jm.task.core.jdbc.util.Util;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     private static final UserService userService = new UserServiceImpl();
-    private static final User user1 = new User("Вася", "Пупкин", (byte) 60);
-    private static final User user2 = new User("Вася", "Пупкин", (byte) 15);
-    private static final User user3 = new User("Вася", "Пупкин", (byte) 126);
-    private static final User user4 = new User("Вася", "Пупкин", (byte) 76);
+    private static final User user1 = new User("Ivan", "Ivanov", (byte) 60);
+    private static final User user2 = new User("Ivan", "Ivanov", (byte) 15);
+    private static final User user3 = new User("Ivan", "Ivanov", (byte) 126);
+    private static final User user4 = new User("Ivan", "Ivanov", (byte) 76);
 
     public static void main(String[] args) {
         userService.createUsersTable();
